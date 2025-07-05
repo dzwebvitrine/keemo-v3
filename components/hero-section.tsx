@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef, useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export function HeroSection() {
-  const ref = useRef(null)
+  const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
-  })
+  });
 
   // Parallax transforms
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -150])
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -300])
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -450])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -450]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -28,7 +28,7 @@ export function HeroSection() {
         delayChildren: 0.3,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -40,47 +40,71 @@ export function HeroSection() {
         ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
-  }
+  };
 
   return (
     <section
       ref={ref}
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-20 pb-16 px-4 overflow-hidden"
+      className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center pt-16 md:pt-20 pb-10 md:pb-16 px-2 sm:px-4 overflow-hidden"
     >
       {/* Animated Particles Background */}
       <ParticlesBackground />
 
       {/* Floating Geometric Shapes with Parallax */}
-      <motion.div style={{ y: y1 }} className="absolute top-20 left-10 w-20 h-20 opacity-10">
+      <motion.div
+        style={{ y: y1 }}
+        className="absolute top-10 left-2 w-14 h-14 sm:w-20 sm:h-20 opacity-10"
+      >
         <div className="w-full h-full bg-gradient-to-br from-indigo-400 to-purple-600 rounded-3xl rotate-12 animate-pulse" />
       </motion.div>
 
-      <motion.div style={{ y: y2 }} className="absolute top-40 right-20 w-16 h-16 opacity-15">
+      <motion.div
+        style={{ y: y2 }}
+        className="absolute top-28 right-4 w-10 h-10 sm:w-16 sm:h-16 opacity-15"
+      >
         <div className="w-full h-full bg-gradient-to-br from-teal-400 to-blue-600 rounded-full animate-bounce" />
       </motion.div>
 
-      <motion.div style={{ y: y3 }} className="absolute bottom-40 left-20 w-12 h-12 opacity-20">
+      <motion.div
+        style={{ y: y3 }}
+        className="absolute bottom-24 left-4 w-8 h-8 sm:w-12 sm:h-12 opacity-20"
+      >
         <div className="w-full h-full bg-gradient-to-br from-orange-400 to-red-600 rounded-2xl -rotate-12" />
       </motion.div>
 
-      <motion.div style={{ y: y1 }} className="absolute top-60 right-10 w-8 h-8 opacity-25">
+      <motion.div
+        style={{ y: y1 }}
+        className="absolute top-44 right-2 w-6 h-6 sm:w-8 sm:h-8 opacity-25"
+      >
         <div className="w-full h-full bg-gradient-to-br from-green-400 to-teal-600 rounded-full" />
       </motion.div>
 
       {/* Main Content with Parallax */}
-      <motion.div style={{ opacity, scale }} className="container mx-auto text-center max-w-5xl z-10">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+      <motion.div
+        style={{ opacity, scale }}
+        className="container mx-auto text-center max-w-2xl sm:max-w-3xl md:max-w-5xl z-10 px-2"
+      >
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-6 sm:space-y-8"
+        >
           {/* Animated Badge */}
           <motion.div variants={itemVariants}>
             <motion.div
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-50/80 to-purple-50/80 backdrop-blur-sm border border-indigo-200/50 rounded-full text-indigo-700 text-sm font-medium shadow-lg"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-indigo-50/80 to-purple-50/80 backdrop-blur-sm border border-indigo-200/50 rounded-full text-indigo-700 text-xs sm:text-sm font-medium shadow-lg"
               whileHover={{ scale: 1.05, y: -2 }}
               transition={{ duration: 0.2 }}
             >
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                transition={{
+                  duration: 3,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                }}
               >
                 <Sparkles className="w-4 h-4" />
               </motion.div>
@@ -89,8 +113,8 @@ export function HeroSection() {
           </motion.div>
 
           {/* Main Title with Staggered Animation */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <motion.h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+          <motion.div variants={itemVariants} className="space-y-2 sm:space-y-4">
+            <motion.h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
               <motion.span
                 className="block bg-gradient-to-r from-slate-800 via-slate-700 to-indigo-600 bg-clip-text text-transparent"
                 initial={{ opacity: 0, x: -50 }}
@@ -122,16 +146,20 @@ export function HeroSection() {
           <motion.div variants={itemVariants}>
             <TypewriterText
               text="Tired of blending in? We help local businesses like yours cut through the noise, connect with your audience, and truly grow online."
-              className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-xs sm:max-w-2xl md:max-w-3xl mx-auto leading-relaxed"
             />
           </motion.div>
 
           {/* CTA Button with Advanced Hover Effects */}
-          <motion.div variants={itemVariants} className="pt-6">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
+          <motion.div variants={itemVariants} className="pt-4 sm:pt-6">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
               <Button
                 size="lg"
-                className="relative bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-5 text-lg font-semibold rounded-full shadow-2xl group overflow-hidden"
+                className="relative bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-semibold rounded-full shadow-2xl group overflow-hidden"
                 asChild
               >
                 <a href="#contact">
@@ -141,8 +169,10 @@ export function HeroSection() {
                     whileHover={{ x: "100%" }}
                     transition={{ duration: 0.6 }}
                   />
-                  <span className="relative z-10">Ready to Stand Out? Let's Talk Social!</span>
-                  <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
+                  <span className="relative z-10">
+                    Ready to Stand Out? Let's Talk Social!
+                  </span>
+                  <ArrowRight className="ml-2 sm:ml-3 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
                 </a>
               </Button>
             </motion.div>
@@ -153,22 +183,22 @@ export function HeroSection() {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20 pointer-events-none" />
     </section>
-  )
+  );
 }
 
 // Particles Background Component
 function ParticlesBackground() {
   const [particles, setParticles] = useState<
     Array<{
-      id: number
-      x: number
-      y: number
-      size: number
-      duration: number
-      delay: number
-      opacity: number
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      duration: number;
+      delay: number;
+      opacity: number;
     }>
-  >([])
+  >([]);
 
   useEffect(() => {
     const generateParticles = () => {
@@ -180,12 +210,12 @@ function ParticlesBackground() {
         duration: Math.random() * 20 + 10,
         delay: Math.random() * 5,
         opacity: Math.random() * 0.5 + 0.1,
-      }))
-      setParticles(newParticles)
-    }
+      }));
+      setParticles(newParticles);
+    };
 
-    generateParticles()
-  }, [])
+    generateParticles();
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -204,7 +234,11 @@ function ParticlesBackground() {
             y: [0, -30, 0],
             x: [0, Math.random() * 20 - 10, 0],
             scale: [1, 1.2, 1],
-            opacity: [particle.opacity, particle.opacity * 0.3, particle.opacity],
+            opacity: [
+              particle.opacity,
+              particle.opacity * 0.3,
+              particle.opacity,
+            ],
           }}
           transition={{
             duration: particle.duration,
@@ -248,23 +282,29 @@ function ParticlesBackground() {
         />
       ))}
     </div>
-  )
+  );
 }
 
 // Typewriter Effect Component
-function TypewriterText({ text, className }: { text: string; className?: string }) {
-  const [displayText, setDisplayText] = useState("")
-  const [currentIndex, setCurrentIndex] = useState(0)
+function TypewriterText({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) {
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
-        setDisplayText((prev) => prev + text[currentIndex])
-        setCurrentIndex((prev) => prev + 1)
-      }, 30)
-      return () => clearTimeout(timeout)
+        setDisplayText((prev) => prev + text[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
+      }, 30);
+      return () => clearTimeout(timeout);
     }
-  }, [currentIndex, text])
+  }, [currentIndex, text]);
 
   return (
     <p className={className}>
@@ -275,5 +315,5 @@ function TypewriterText({ text, className }: { text: string; className?: string 
         className="inline-block w-0.5 h-6 bg-indigo-600 ml-1"
       />
     </p>
-  )
+  );
 }

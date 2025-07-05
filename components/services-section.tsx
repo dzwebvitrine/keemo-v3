@@ -72,59 +72,59 @@ export function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="py-20 lg:py-32 px-4 bg-gradient-to-br from-slate-50 to-blue-50/30">
+    <section id="services" className="py-14 md:py-20 lg:py-32 px-2 sm:px-4 bg-gradient-to-br from-slate-50 to-blue-50/30">
       <div className="container mx-auto max-w-7xl">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-16"
+          className="space-y-12 md:space-y-16"
         >
           {/* Section Header */}
-          <div className="text-center space-y-6">
+          <div className="text-center space-y-4 md:space-y-6">
             <motion.h2
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-800 to-indigo-600 bg-clip-text text-transparent"
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-800 to-indigo-600 bg-clip-text text-transparent"
             >
               Your Social Media Growth Kit
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
               Everything you need to dominate social media in Philadelphia. From strategy to execution, we've got your
               complete growth covered.
             </motion.p>
           </div>
 
           {/* Services Grid */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
             {services.map((service, index) => (
               <motion.div key={service.title} variants={itemVariants} className="group">
                 <div
-                  className={`relative p-8 lg:p-10 bg-gradient-to-br ${service.bgGradient} rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/50 hover:border-white/80 h-full`}
+                  className={`relative p-5 sm:p-8 lg:p-10 bg-gradient-to-br ${service.bgGradient} rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/50 hover:border-white/80 h-full`}
                 >
                   {/* Icon */}
-                  <div className="mb-6">
+                  <div className="mb-4 sm:mb-6">
                     <div
-                      className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.gradient} p-4 group-hover:scale-110 transition-transform duration-300`}
+                      className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-r ${service.gradient} p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300`}
                     >
                       <service.icon className="w-full h-full text-white" />
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="space-y-6">
-                    <h3 className="text-2xl lg:text-3xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors duration-300">
+                  <div className="space-y-4 sm:space-y-6">
+                    <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors duration-300">
                       {service.title}
                     </h3>
 
-                    <p className="text-slate-700 leading-relaxed text-lg">{service.description}</p>
+                    <p className="text-slate-700 leading-relaxed text-base sm:text-lg">{service.description}</p>
 
                     {/* Features */}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 sm:gap-3">
                       {service.features.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center space-x-2 text-slate-600">
                           <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.gradient}`} />
-                          <span className="text-sm font-medium">{feature}</span>
+                          <span className="text-xs sm:text-sm font-medium">{feature}</span>
                         </div>
                       ))}
                     </div>
