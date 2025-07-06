@@ -75,8 +75,7 @@ export function WhyKeemoSection() {
               We Get Philly. You Get Results.
             </motion.p>
             <motion.p variants={itemVariants} className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Born and raised in Philadelphia, we understand what makes this city tick. That local expertise translates
-              into social media strategies that actually work.
+            We're not just digital marketers; we're your neighbors, deeply rooted in Philadelphia. We understand what makes this city tick and, more importantly, what makes its people click. Our passion is transforming your online presence into a powerful growth engine, designed specifically for the local market.
             </motion.p>
           </div>
 
